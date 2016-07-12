@@ -51,14 +51,17 @@ class FraudRecordApi {
     /**
      * Hash a value according to FraudRecord specifications
      *
-     * @param $value
+     * @param string $value
+     * @param bool $prepare password is treated differently
      * @return string
      */
-    function hash($value)
+    function hash($value, $prepare = true)
     {
-        $value = trim($value);
-        $value = strtolower($value);
-        $value = str_replace(" ","", $value);
+        if($prepare) {
+            $value = trim($value);
+            $value = strtolower($value);
+            $value = str_replace(" ", "", $value);
+        }
 
         for($i = 0; $i < 32000; $i++)
             $value = sha1("fraudrecord-".$value);

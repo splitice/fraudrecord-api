@@ -9,19 +9,18 @@ class ApiMethodsTest extends PHPUnit_Framework_TestCase {
 
         //Assert
         $client = $this->getMock(FraudRecordApiClient::class, array(), array("test"));
-        $client->expects($this->once())->method('execute')->with($this->equalTo('query'),$this->equalTo(array('name'=>$name)))->will($this->returnValue("<report>a-b-c</report>"));
+        $client->expects($this->once())->method('execute')->with($this->equalTo('query'),$this->equalTo(array('name'=>$name)))->will($this->returnValue("<report>a-b-c-d</report>"));
 
         //Do
         $api = new FraudRecordApi($client);
         $ret = $api->query(array('name'=>$name));
-        $this->assertEquals(array('value'=>"a",'count'=>"b",'reliability'=>"c"), $ret);
+        $this->assertEquals(array('value'=>"a",'count'=>"b",'reliability'=>"c",'code'=>'d'), $ret);
     }
 
 
     function testHash(){
         $tests = array(
                 'johnsmith'=>'ac2c739924bf5d4d9bf5875dc70274fef0fe54cf',
-                'iLoveLinux!'=>'93491c2dff7b35528c319f304b0222fc55ebcfcb',
                 '+10001112233'=>'3f09086d8d4e4019eb534ce28e6b64c8ef563ec9',
             );
 
