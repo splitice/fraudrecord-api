@@ -73,6 +73,6 @@ class FraudRecordApiClient implements IFraudRecordAPIClient {
      * @throws ApiCurlException
      */
     function execute($action, $fields){
-        return $this->perform_request($action, $this->build_fields($action,$fields));
+        return $this->perform_request($this->build_fields($action,$fields));
     }
 }
