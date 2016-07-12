@@ -29,7 +29,7 @@ class ApiMethodsTest extends PHPUnit_Framework_TestCase {
         $api = new FraudRecordApi(new FraudRecordApiClient('test'));
 
         foreach($tests as $key=>$value){
-            $this->assertEquals($key, $api->hash($key));
+            $this->assertEquals($value, $api->hash($key));
         }
     }
 } 
