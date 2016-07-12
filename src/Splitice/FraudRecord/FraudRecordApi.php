@@ -44,7 +44,7 @@ class FraudRecordApi {
         }
 
         $ret = array();
-        list($ret['value'],$ret['count'],$ret['reliability']) = explode('-', $m[2], 3);
+        list($ret['value'],$ret['count'],$ret['reliability'],$ret['code']) = explode('-', $m[2], 4);
         return $ret;
     }
 
