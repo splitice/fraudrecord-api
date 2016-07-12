@@ -17,4 +17,19 @@ class ApiMethodsTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(array('value'=>"a",'count'=>"b",'reliability'=>"c"), $ret);
     }
 
+
+    function testHash(){
+        $tests = array(
+                'johnsmith'=>'ac2c739924bf5d4d9bf5875dc70274fef0fe54cf',
+                'iLoveLinux!'=>'93491c2dff7b35528c319f304b0222fc55ebcfcb',
+                '+10001112233'=>'3f09086d8d4e4019eb534ce28e6b64c8ef563ec9',
+            );
+
+
+        $api = new FraudRecordApi(new FraudRecordApiClient('test'));
+
+        foreach($tests as $key=>$value){
+            $this->assertEquals($key, $api->hash($value));
+        }
+    }
 } 

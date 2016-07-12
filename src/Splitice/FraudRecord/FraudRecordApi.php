@@ -56,6 +56,10 @@ class FraudRecordApi {
      */
     function hash($value)
     {
+        $value = trim($value);
+        $value = strtolower($value);
+        $value = str_replace(" ","", $value);
+
         for($i = 0; $i < 32000; $i++)
             $value = sha1("fraudrecord-".$value);
         return $value;
